@@ -413,13 +413,13 @@
       
     </div>
   
-    <!-- 3. 外网访问 -->
+     <!-- 3. 外网访问 -->
     <h2>③ 外网访问 (非实验室网络)</h2>
-    <p>提供两种远程访问方式。公网域名速度较快（约10 Mbps），FN Connect 作为备用（2 Mbps）。</p>
+    <p>提供三种远程访问方式：1.樱花frp公网域名穿透，速度约10 Mbps、必须带端口；2.CloudFlare-Tunnels穿透，速度10mbps左右、延迟较高、不限流量不用带端口；3.FN Connect 作为备用（2 Mbps）。</p>
     
     <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0;">
         <div style="flex: 1; min-width: 240px; background: #f2f6fc; border-radius: 18px; padding: 1.2rem 1.5rem;">
-            <h3 style="margin-top: 0; margin-bottom: 0.8rem; border-left: none; padding-left: 0; color: #1f4a8a;">🌐 公网域名访问</h3>
+            <h3 style="margin-top: 0; margin-bottom: 0.8rem; border-left: none; padding-left: 0; color: #1f4a8a;">🌐 樱花frp公网域名访问</h3>
             <p><strong>浏览器：</strong></p>
             <div class="code-block" style="margin: 0.6rem 0; padding: 0.8rem;">https://nas.sweizh.online:54367</div>
             <p><strong>飞牛 App：</strong></p>
@@ -431,6 +431,13 @@
             <div class="code-block" style="margin: 0.6rem 0; padding: 0.8rem;">https://sweizh.fnos.net</div>
             <p><strong>飞牛 App：</strong></p>
             <div class="code-block" style="margin: 0.4rem 0; padding: 0.8rem;">FN ID: sweizh</div>
+        </div>
+      <div style="flex: 1; min-width: 240px; background: #f2f6fc; border-radius: 18px; padding: 1.2rem 1.5rem;">
+            <h3 style="margin-top: 0; margin-bottom: 0.8rem; border-left: none; padding-left: 0; color: #1f4a8a;">🌐 CloudFlare-Tunnels公网域名访问</h3>
+            <p><strong>浏览器：</strong></p>
+            <div class="code-block" style="margin: 0.6rem 0; padding: 0.8rem;">https://nas.sweizh.top</div>
+            <p><strong>飞牛 App：</strong></p>
+            <div class="code-block" style="margin: 0.4rem 0; padding: 0.8rem;">地址: nas.sweizh.top<br>务必勾选「HTTPS 安全访问」</div>
         </div>
     </div>
 

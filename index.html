@@ -2,224 +2,131 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>页面跳转提示 - 鲲龙航空飞牛NAS操作手册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在跳转中...</title>
+    <!-- 0 秒后刷新到目标地址，实现自动跳转 -->
+    <meta http-equiv="refresh" content="0; url=https://blog.sweizh.top/post/klhk-nas">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, #f8f9fc 0%, #eef2f7 100%);
-            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            position: relative;
-            cursor: pointer;
         }
-
-        /* 主卡片容器 */
-        .container {
-            max-width: 960px;
+        .card {
+            max-width: 580px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255,255,255,0.96);
             backdrop-filter: blur(2px);
-            border-radius: 64px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.6);
-            padding: 3rem 2.5rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.5);
-        }
-
-        .container:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 30px 55px -12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 醒目的大标题 */
-        .hero-title {
-            font-size: clamp(2.2rem, 8vw, 4.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1a2a3a, #2c4c6c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 1.25rem;
-            line-height: 1.2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        /* 辅助说明副文本 */
-        .sub {
-            font-size: 1.2rem;
-            color: #4a5b6e;
-            margin-bottom: 2rem;
-            font-weight: 450;
-            border-bottom: 1px solid #e0e7ef;
-            display: inline-block;
-            padding-bottom: 6px;
-        }
-
-        /* 大号可点击区域 — 链接卡片样式 */
-        .link-card {
-            background: #ffffffdd;
             border-radius: 48px;
-            margin: 2.5rem 0 1.8rem;
-            padding: 1.6rem 2rem;
-            transition: all 0.25s;
-            border: 1px solid #cbdae9;
-            backdrop-filter: blur(4px);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.7);
+            transition: all 0.2s;
         }
-
-        .main-link {
-            display: inline-block;
-            font-size: clamp(1.2rem, 5vw, 2rem);
+        .emoji-big {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 1.8rem;
             font-weight: 600;
+            color: #1f3b4c;
+            margin-bottom: 0.75rem;
+        }
+        .message {
+            font-size: 1.1rem;
+            color: #2c5368;
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+        }
+        .manual-link {
+            display: inline-block;
+            background: #eef2f9;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 500;
             color: #1f6392;
             text-decoration: none;
-            word-break: break-all;
-            padding: 0.6rem 1.2rem;
-            border-radius: 60px;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-            background: #eef3fc;
+            border: 1px solid #cbddea;
+            transition: all 0.2s;
         }
-
-        .main-link:hover {
+        .manual-link:hover {
             background: #1f6392;
             color: white;
-            box-shadow: 0 12px 20px -10px rgba(31, 99, 146, 0.4);
-            text-decoration: none;
+            border-color: #1f6392;
+            box-shadow: 0 6px 14px rgba(31,99,146,0.25);
         }
-
-        /* 点击提示语 */
-        .click-hint {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #eef2f7cc;
-            backdrop-filter: blur(4px);
-            padding: 0.8rem 1.8rem;
-            border-radius: 100px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #2c4c6c;
-            margin-top: 0.8rem;
-            border: 1px solid #ffffffaa;
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6c7e93;
         }
-
-        .click-hint svg {
-            width: 22px;
-            height: 22px;
-            stroke: #2c4c6c;
-            stroke-width: 2;
-            fill: none;
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbddea;
+            border-top-color: #1f6392;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
         }
-
-        .footer-note {
-            margin-top: 2.2rem;
-            font-size: 0.85rem;
-            color: #6c7a8e;
-            border-top: 1px dashed #cfddee;
-            padding-top: 1.6rem;
-            letter-spacing: 0.3px;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
-
-        /* 小屏优化 */
-        @media (max-width: 640px) {
-            body {
-                padding: 1.2rem;
-            }
-            .container {
-                padding: 2rem 1.2rem;
-                border-radius: 48px;
-            }
-            .link-card {
-                padding: 1.2rem 1rem;
-            }
-            .main-link {
-                font-size: 1.1rem;
-                padding: 0.4rem 0.8rem;
-            }
-            .click-hint {
-                font-size: 0.85rem;
-                padding: 0.5rem 1.2rem;
-            }
+        .auto-hint {
+            background: #eaf4ff;
+            border-radius: 32px;
+            padding: 0.6rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #155e7b;
         }
-
-        /* 可选：增加轻量级脉冲动画吸引注意 */
-        @keyframes gentlePulse {
-            0% { opacity: 0.7; transform: scale(0.98);}
-            100% { opacity: 1; transform: scale(1);}
-        }
-        .container {
-            animation: gentlePulse 0.6s ease-out;
+        @media (max-width: 500px) {
+            .card { padding: 1.8rem 1.2rem; }
+            h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 大大的标题文字 -->
-        <div class="hero-title">
-            📄 请前往
+    <div class="card">
+        <div class="emoji-big">🚀</div>
+        <h1>即将为您跳转</h1>
+        <div class="message">
+            <span class="spinner"></span> 正在前往 <strong>blog.sweizh.top/post/klhk-nas</strong> ...
         </div>
-        <!-- 直接展示完整链接，且可点击跳转 -->
-        <div class="link-card">
-            <a href="https://blog.sweizh.top/post/klhk-nas" class="main-link" target="_blank" rel="noopener noreferrer">
-                🔗 https://blog.sweizh.top/post/klhk-nas
+        <div class="auto-hint">
+            ⚡ 页面会自动跳转，如果没有反应，请点击下方按钮
+        </div>
+        <div style="margin-top: 1.5rem;">
+            <a href="https://blog.sweizh.top/post/klhk-nas" class="manual-link" rel="noopener noreferrer">
+                🔗 直接访问目标页面
             </a>
         </div>
-
-        <!-- 附加辅助说明，任意位置点击也能跳转（全屏点击友好） -->
-        <div class="click-hint">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-            <span>👆 点击页面任意位置快速访问</span>
-        </div>
-        <div class="footer-note">
-            ⚡ 查看完整指南 · 内网/外网穿透 · NAS 挂载教程
+        <div class="footer">
+            © 2026 · 自动导航服务
         </div>
     </div>
 
+    <!-- 额外的 JS 保障：如果 meta refresh 在某些环境下被阻止，用 JS 强制执行跳转 -->
     <script>
-        // 通过点击整个页面(body)直接跳转到目标链接 (用户期望方便跳转)
-        // 注意：防止用户点中链接时触发两次跳转，但无伤大雅，体验依然平滑。
-        // 同时避免干扰链接原有默认行为。
-        document.body.addEventListener('click', function(event) {
-            // 如果点击的元素本身是可跳转链接（或者其父级包裹链接）且不希望覆盖 a 的原生行为，
-            // 但依然尊重跳转，为了防止重复跳转，对于 <a> 标签本身不做额外重定向（保留原行为）。
-            // 但如果点到了非链接区域，直接跳转。完美符合“点击链接可以直接跳转” 并且 全屏辅助跳转。
-            let target = event.target;
-            // 向上查找是否点击了 .main-link 或者其内部区域 (a 标签)
-            let isLinkClicked = target.closest('.main-link');
-            if (!isLinkClicked) {
-                // 非链接区域点击 → 跳转至目标网址
-                window.location.href = 'https://blog.sweizh.top/post/klhk-nas';
-            }
-            // 如果点击的就是链接本身，浏览器原生跳转，不做额外动作，避免冲突。
-        });
-
-        // 附加小优化：如果用户点击了.link-card内部但非a标签本身，也提供跳转 (保持一致性)
-        // 使用事件委托确保体验友好 (已经通过body统一判断，但增加明确性)
-        const cardContainer = document.querySelector('.link-card');
-        if (cardContainer) {
-            cardContainer.addEventListener('click', function(e) {
-                // 如果点到的不是 .main-link 的直接或间接子元素，仍然跳转（使卡片区域可点）
-                if (!e.target.closest('.main-link')) {
-                    window.location.href = 'https://blog.sweizh.top/post/klhk-nas';
-                }
-            });
-        }
-
-        // 可选：控制台输出访问友好提醒
-        console.log('页面已加载 — 点击任意位置即可跳转至 https://blog.sweizh.top/post/klhk-nas');
+        // 立即执行跳转，确保即使 meta 被禁用或延迟也能跳转
+        (function() {
+            var targetUrl = "https://blog.sweizh.top/post/klhk-nas";
+            // 使用 replace 避免在历史记录中留下当前页
+            window.location.replace(targetUrl);
+        })();
     </script>
 </body>
 </html>
